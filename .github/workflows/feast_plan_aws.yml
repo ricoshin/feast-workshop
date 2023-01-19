@@ -34,7 +34,8 @@ jobs:
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
-          echo "::set-output name=body::$body"
+          # echo "::set-output name=body::$body"
+          echo "body=$body" >> $GITHUB_OUTPUT
 
       # Post a comment on the PR with the results of `feast plan`
       - name: Create comment
@@ -43,4 +44,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
+            test line1 %0A
+            test line2 \n
+            test line3
             ${{ steps.feast_plan.outputs.body }}

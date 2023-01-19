@@ -1,4 +1,4 @@
-
+[![Feast plan (AWS)](https://github.com/ricoshin/feast-workshop/actions/workflows/feast_plan_aws.yml/badge.svg)](https://github.com/ricoshin/feast-workshop/actions/workflows/feast_plan_aws.yml)
 
 ## <img src="images/feast_icon.png" width=20>&nbsp; Workshop: Learning Feast 
 

@@ -20,7 +20,7 @@ jobs:
           aws-region: us-west-2
 
       # Run `feast plan`
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install feast
         run: pip install "feast[aws]"
       - name: Capture `feast plan` in a variable

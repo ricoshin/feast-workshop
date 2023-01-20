@@ -49,4 +49,4 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             Feast plan output:
-            ${{ steps.feast_plan.outputs.body }}
+            ${{ steps.feast_plan.outputs.FEAST_OUTPUT }}

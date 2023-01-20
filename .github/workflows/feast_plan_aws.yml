@@ -30,17 +30,16 @@ jobs:
           FEAST_FORCE_USAGE_UUID: None
           IS_TEST: "True"
         run: |
-          body=$(cd module_0/feature_repo_aws; feast plan)
-          # body="${body//'%'/'%25'}"
-          # body="${body//$'\n'/'%0A'}"
-          # body="${body//$'\r'/'%0D'}"
-          echo "::set-output name=body::$body"
+          echo 'FEAST_OUTPUT<<EOF' >> $GITHUB_OUTPUT
+          cd module_0/feature_repo_aws; feast plan >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
 
       # Post a comment on the PR with the results of `feast plan`
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v1
-        if: ${{ steps.feast_plan.outputs.body }}
+        uses: peter-evans/create-or-update-comment@v2
+        if: ${{ steps.feast_plan.outputs.FEAST_OUTPUT }}
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.feast_plan.outputs.body }}
+            ${{ steps.feast_plan.outputs.FEAST_OUTPUT }}
+  
